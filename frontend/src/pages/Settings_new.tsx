@@ -252,4 +252,150 @@ const StyledSelect: React.FC<StyledSelectProps> = ({ id, value, onChange, option
         appearance: 'none',
         transition: 'border-color 0.2s',
       }}
-      onFocus={e => { e.currentTarget.style.bord
+      onFocus={e => { e.currentTarget.style.borderColor = 'var(--accent-cyan)'; }}
+      onBlur={e => { e.currentTarget.style.borderColor = 'var(--border-glass)'; }}
+    >
+      {options.map(o => (
+        <option key={o.value} value={o.value} style={{ background: '#0a0b10' }}>
+          {o.label}
+        </option>
+      ))}
+    </select>
+    <svg
+      style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-secondary)' }}
+      width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+    >
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  </div>
+);
+
+// ─── Main Settings page ────────────────────────────────────────────────────────
+
+const LOCALE_OPTIONS: { value: Locale; label: string }[] = [
+  { value: 'en-US', label: '🇺🇸  English (US)' },
+  { value: 'en-GB', label: '🇬🇧  English (UK)' },
+  { value: 'de-DE', label: '🇩🇪  Deutsch (Germany)' },
+  { value: 'fr-FR', label: '🇫🇷  Français (France)' },
+  { value: 'ja-JP', label: '🇯🇵  日本語 (Japan)' },
+  { value: 'zh-CN', label: '🇨🇳  中文 (China)' },
+];
+
+const CURRENCY_OPTIONS: { value: Currency; label: string }[] = [
+  { value: 'USD', label: 'USD — US Dollar ($)' },
+  { value: 'XLM', label: 'XLM — Stellar Lumens' },
+];
+
+const NOTIF_KEYS: { key: keyof NotificationPreferences; label: string; description: string }[] = [
+const PRECISION_OPTIONS: { value: Precision; label: string }[] = [
+  { value: 0, label: '0 decimal places' },
+  { value: 1, label: '1 decimal place' },
+  { value: 2, label: '2 decimal places' },
+  { value: 3, label: '3 decimal places' },
+  { value: 4, label: '4 decimal places' },
+  { value: 5, label: '5 decimal places' },
+  { value: 6, label: '6 decimal places' },
+];
+  { key: 'depositAlerts',    label: 'Deposit Alerts',     description: 'Get notified when funds are deposited into your vaults.' },
+const PRECISION_OPTIONS: { value: Precision; label: string }[] = [
+  { value: 0, label: '0 decimal places' },
+  { value: 1, label: '1 decimal place' },
+  { value: 2, label: '2 decimal places' },
+  { value: 3, label: '3 decimal places' },
+  { value: 4, label: '4 decimal places' },
+  { value: 5, label: '5 decimal places' },
+  { value: 6, label: '6 decimal places' },
+];
+  { key: 'withdrawalAlerts', label: 'Withdrawal Alerts',  description: 'Get notified when withdrawals are processed.' },
+const PRECISION_OPTIONS: { value: Precision; label: string }[] = [
+  { value: 0, label: '0 decimal places' },
+  { value: 1, label: '1 decimal place' },
+  { value: 2, label: '2 decimal places' },
+  { value: 3, label: '3 decimal places' },
+  { value: 4, label: '4 decimal places' },
+  { value: 5, label: '5 decimal places' },
+  { value: 6, label: '6 decimal places' },
+];
+  { key: 'yieldUpdates',     label: 'Yield Updates',      description: 'Daily updates on yield earned across your positions.' },
+const PRECISION_OPTIONS: { value: Precision; label: string }[] = [
+  { value: 0, label: '0 decimal places' },
+  { value: 1, label: '1 decimal place' },
+  { value: 2, label: '2 decimal places' },
+  { value: 3, label: '3 decimal places' },
+  { value: 4, label: '4 decimal places' },
+  { value: 5, label: '5 decimal places' },
+  { value: 6, label: '6 decimal places' },
+];
+  { key: 'priceAlerts',      label: 'Price Alerts',       description: 'Price movement alerts for tracked RWA assets.' },
+const PRECISION_OPTIONS: { value: Precision; label: string }[] = [
+  { value: 0, label: '0 decimal places' },
+  { value: 1, label: '1 decimal place' },
+  { value: 2, label: '2 decimal places' },
+  { value: 3, label: '3 decimal places' },
+  { value: 4, label: '4 decimal places' },
+  { value: 5, label: '5 decimal places' },
+  { value: 6, label: '6 decimal places' },
+];
+  { key: 'weeklyReport',     label: 'Weekly Report',      description: 'Comprehensive performance summary every Monday.' },
+const PRECISION_OPTIONS: { value: Precision; label: string }[] = [
+  { value: 0, label: '0 decimal places' },
+  { value: 1, label: '1 decimal place' },
+  { value: 2, label: '2 decimal places' },
+  { value: 3, label: '3 decimal places' },
+  { value: 4, label: '4 decimal places' },
+  { value: 5, label: '5 decimal places' },
+  { value: 6, label: '6 decimal places' },
+];
+  { key: 'securityAlerts',   label: 'Security Alerts',    description: 'Critical alerts for logins and security events.' },
+const PRECISION_OPTIONS: { value: Precision; label: string }[] = [
+  { value: 0, label: '0 decimal places' },
+  { value: 1, label: '1 decimal place' },
+  { value: 2, label: '2 decimal places' },
+  { value: 3, label: '3 decimal places' },
+  { value: 4, label: '4 decimal places' },
+  { value: 5, label: '5 decimal places' },
+  { value: 6, label: '6 decimal places' },
+];
+];
+const PRECISION_OPTIONS: { value: Precision; label: string }[] = [
+  { value: 0, label: '0 decimal places' },
+  { value: 1, label: '1 decimal place' },
+  { value: 2, label: '2 decimal places' },
+  { value: 3, label: '3 decimal places' },
+  { value: 4, label: '4 decimal places' },
+  { value: 5, label: '5 decimal places' },
+  { value: 6, label: '6 decimal places' },
+];
+
+const Settings: React.FC = () => {
+
+const PRECISION_OPTIONS: { value: Precision; label: string }[] = [
+  { value: 0, label: '0 decimal places' },
+  { value: 1, label: '1 decimal place' },
+  { value: 2, label: '2 decimal places' },
+  { value: 3, label: '3 decimal places' },
+  { value: 4, label: '4 decimal places' },
+  { value: 5, label: '5 decimal places' },
+  { value: 6, label: '6 decimal places' },
+];
+
+  const {
+    preferences,
+    resolvedTheme,
+    setTheme,
+    setLocale,
+    setCurrency,
+    setNotification,
+    toggleCompactMode,
+    toggleShowBalances,
+    setPrecision,
+    resetToDefaults,
+    preferences,
+    resolvedTheme,
+    setTheme,
+    setLocale,
+    setCurrency,
+    setNotification,
+    toggleCompactMode,
+    toggleShowBalances,
+    resetToDefaults,
